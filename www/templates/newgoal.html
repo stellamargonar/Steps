@@ -1,0 +1,27 @@
+<ion-view view-title="Goal">
+	<ion-nav-buttons side="right">
+      <button class="button button-clear" ng-click="createGoal()">
+        <i class="icon ion-plus-round"></i>
+      </button>
+    </ion-nav-buttons>
+	<ion-content>
+		<div class="list">
+		  <label class="item item-input item-floating-label">
+		    <span class="input-label">Goal</span>
+		    <input type="text" placeholder="Goal" ng-model="goal.title" required>
+		  </label>
+		  <label class="item item-input item-floating-label">
+		    <span class="input-label">Amount</span>
+		    <input type="text" placeholder="€" ng-model="goal.amount" required>
+		  </label>
+		  <label class="item item-input item-floating-label">
+		    <span class="input-label">Expiration</span>
+		    <input type="date" placeholder="deadline" ng-model="goal.expiration">
+		  </label>
+		  <!-- <label class="item item-input item-floating-label">
+		    <span class="input-label">Picture</span>
+		    <input type="picture" ng-model="post.img">
+		  </label>
+		</div> -->
+	</ion-content>
+</ion-view>

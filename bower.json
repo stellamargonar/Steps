@@ -1,0 +1,13 @@
+{
+  "name": "HelloIonic",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.2.4"
+  },
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "ngstorage": "~0.3.10",
+    "Chart.js": "~1.0.2",
+    "angular-chart.js": "~0.8.8"
+  }
+}

@@ -1,0 +1,20 @@
+<ion-view view-title="Savings">
+  <ion-content>
+    <div class="list">
+    	<div class="item" ng-repeat="log in logs">
+        <div class="pull-right">
+          <span>{{log.date | date }}</span><br/>
+          <button class="pull-right button button-small button-clear button-dark" ng-click="deleteLog(log.id)">
+            <i class="icon ion-trash-b"></i>
+          </button>
+        </div>
+        <h2>{{log.amount}} €</h2>
+        <a class="small" href="#/app/goals/{{log.goal}}">
+          <i class="icon ion-arrow-right-c"></i>
+          {{getGoalName(log.goal)}}
+        </a>
+			</div>
+		</div>
+    </div>
+  </ion-content>
+</ion-view>

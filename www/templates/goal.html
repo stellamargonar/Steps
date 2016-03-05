@@ -1,0 +1,38 @@
+<ion-view view-title="Goal">
+  <ion-content padding="true">
+    <h3 class="pull-right">{{goal.amount}} €</h3>
+    <h1>{{goal.title}}</h1>
+    <img ng-src="{{goal.img}}" />
+
+    <div class="row">
+	    <div class="col col-90">
+		    <div class="progress">
+
+		  		<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{goal.saved / goal.amount * 100}}" aria-valuemin="0" aria-valuemax="100" style="width: {{goal.saved / goal.amount * 100}}%">
+		  			<b>{{goal.saved > goal.amount ? 'Completed!' : goal.saved + ' €'}} </b>
+		    		<span class="sr-only">{{goal.saved}} € saved</span>
+		  		</div>
+			</div>
+		</div>
+		<div class="col col-10 small" style="text-align: right;">{{goal.amount + '€' }}</div>
+	</div>
+    <div class="item item-text-wrap">
+        <canvas id="line" class="chart chart-line" data="chartData.data" labels="chartData.labels" options="{showTooltips: false, scaleShowVerticalLines : false}"></canvas>
+    </div>
+
+	<div class="list">
+    	<div class="item" ng-repeat="log in getGoalLogs(goal.id)">
+    		<div class="pull-right">
+
+	          <button class="pull-right button button-small button-clear button-dark" ng-click="deleteLog(log.id)">
+	            <i class="icon ion-trash-b"></i>
+	          </button>
+	        </div>
+
+			<h2>{{log.amount}} €</h2> 	          <span class="small">{{log.date | date }}</span>
+
+		</div>
+	</div>
+
+  </ion-content>
+</ion-view>
