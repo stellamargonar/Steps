@@ -87,4 +87,23 @@ angular.module('starter.controllers', ['starter.services','ngStorage','chart.js'
     Log.delete(logId);
     $scope.logs = Log.allLogs();
   };
+})
+
+.controller('TipCtrl', function($scope, $http) {
+  $scope.tips = [];
+
+  var init = function(){
+    console.log('called init');
+    // read tips from file
+    $http.get("js/files/tips_thesimpledollar.json").success(function(fileContent) {
+      $scope.tips = fileContent;
+    }).error(function(error) {
+      console.log(error);
+      console.log('Something went wrong..');
+    });
+  }
+  init();
+  $scope.toggleTip = function(index) {
+    $scope.tips[index].visible = !($scope.tips[index].visible || false);
+  }
 });

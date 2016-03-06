@@ -1,0 +1,20 @@
+<ion-view view-title="Tips for saving">
+  <ion-content>
+    <span class="padding small">
+    	from <a href="http://www.thesimpledollar.com/little-steps-100-great-tips-for-saving-money-for-those-just-getting-started/">The Simple Dollar</a>
+    </span>
+
+    <div class="list">
+	  	<div ng-repeat="tip in tips" track-by="$index"> 
+			<div class="item item-icon-right item-text-wrap">
+		    	{{tip.title}}
+		    	<i ng-click="toggleTip($index)" class="icon" ng-class="tip.visible ? 'ion-android-arrow-dropup' : 'ion-android-arrow-dropdown' "></i>
+		  	</div>
+		  	<div ng-show="tip.visible" class="padding">{{tip.content}}</div>
+		</div>
+	</div>
+
+
+
+  </ion-content>
+</ion-view>

@@ -67,6 +67,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         controller: 'LogsCtrl'
       }
     }
+  })
+    .state('app.tips', {
+    url: '/tips',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/tips.html',
+        controller: 'TipCtrl'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/goals');
