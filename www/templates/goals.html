@@ -1,8 +1,9 @@
 <ion-view view-title="Goals">
   <ion-content>
     <div class="list">
-    	<div class="item item-thumbnail-left" ng-repeat="goal in goals" href="#/app/goals/{{goal.id}}">
-      		<img ng-src="{{goal.img}}">
+    	<!-- <div class="item item-thumbnail-left" ng-repeat="goal in goals" href="#/app/goals/{{goal.id}}"> -->
+    	<div class="item " ng-repeat="goal in goals" href="#/app/goals/{{goal.id}}">
+      		<!-- <img ng-src="{{goal.img}}"> -->
       		<button class="pull-right button button-small button-clear button-dark" ng-click="showLog(goal.id)"><i class="icon ion-plus-round"></i></button>
       		<button class="pull-right button button-small button-clear button-dark" ng-click="deleteGoal(goal.id)"><i class="icon ion-trash-b"></i></button>
       		<a class="pull-right button button-small button-clear button-dark" href="#/app/goals/{{goal.id}}"><i class="icon ion-ios-list-outline"></i></a>

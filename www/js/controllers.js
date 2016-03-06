@@ -2,8 +2,10 @@ angular.module('starter.controllers', ['starter.services','ngStorage','chart.js'
 
 .controller('AppCtrl', function(){})
 .controller('GoalsCtrl', function($scope,  $ionicPopup, $localStorage, Goal, Log) {
-  $scope.goals = Goal.list();
-
+  $scope.init = function () {
+    $scope.goals = Goal.list();
+  }
+  $scope.init();
   // LOG pop up
   $scope.showLog = function(goalId) {
     $scope.log = {date: new Date()};
@@ -32,32 +34,39 @@ angular.module('starter.controllers', ['starter.services','ngStorage','chart.js'
 
   $scope.deleteGoal = function(goalId) {
     Goal.delete(goalId);
-    $scope.goals = Goal.list();
+    $scope.init();
+  };
+
+  $scope.reset = function() {
+    Goal.deleteAll();
+    $scope.init();
   };
 
 })
 
-.controller('GoalCtrl', function($scope, $stateParams, $state, Goal, Log) {
+.controller('GoalCtrl', ['$scope', '$stateParams', '$state', 'Goal', 'Log' ,
+  function($scope, $stateParams, $state, Goal, Log) {
   $scope.goal = {};
   if ($stateParams.goalId) {
     $scope.goal = Goal.get($stateParams.goalId); 
+    if ($scope.goal.logs) {
+      $scope.getGoalLogs = Log.getGoalLogs;
+      $scope.chartData = Log.graphData($scope.goal);
+    }
   }
   
   $scope.createGoal = function() {
     Goal.create($scope.goal);
-    $state.go('app.goals');
+    $state.transitionTo('app.goals', {}, { reload: true, inherit: true, notify: true });
+    $scope.goal = {};
+    // $state.go('app.goals', {}, {reload: true});
   };
 
   $scope.editGoal = function() {
     Goal.update($scope.goal);
-    $state.go('app.goals');
+    $state.go('app.goals', {}, {reload: true});
   }
-  if ($scope.goal.logs) {
-    $scope.getGoalLogs = Log.getGoalLogs;
-    $scope.chartData = Log.graphData($scope.goal);
-  }
-
-})
+}])
 
 .controller('LogsCtrl', function($scope, Log, Goal) {
   $scope.logs = Log.allLogs();

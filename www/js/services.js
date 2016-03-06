@@ -8,6 +8,10 @@ angular.module('starter.services', ['ngStorage'])
 			return goal != undefined;
 		});
 	};
+	factoryInstance.deleteAll = function() {
+		$localStorage.goals = [];
+	};
+
 	factoryInstance.get = function(goalId) {
 		return $localStorage.goals[goalId];
 	};
@@ -53,6 +57,7 @@ angular.module('starter.services', ['ngStorage'])
 				return previousValue;
 			return previousValue + log.amount;
 		},0);
+		goal.saved  = Math.ceil(goal.saved * 100)/100;
 		return goal;
 	};
 
