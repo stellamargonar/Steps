@@ -6,22 +6,22 @@
     </ion-nav-buttons>
 	<ion-content>
 		<div class="list">
-		  <label class="item item-input item-floating-label">
-		    <span class="input-label">Goal</span>
-		    <input type="text" placeholder="Goal" ng-model="goal.title" required>
-		  </label>
-		  <label class="item item-input item-floating-label">
-		    <span class="input-label">Amount</span>
-		    <input type="text" placeholder="€" ng-model="goal.amount" required>
-		  </label>
-		  <label class="item item-input item-floating-label">
-		    <span class="input-label">Expiration</span>
-		    <input type="date" placeholder="deadline" ng-model="goal.expiration">
-		  </label>
-		  <!-- <label class="item item-input item-floating-label">
-		    <span class="input-label">Picture</span>
-		    <input type="picture" ng-model="post.img">
-		  </label>
-		</div> -->
+			<label class="item item-input item-floating-label">
+				<span class="input-label">Goal</span>
+				<input type="text" placeholder="Goal" ng-model="goal.title" required>
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label">Amount</span>
+				<input type="text" placeholder="€" ng-model="goal.amount" required>
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label">Expiration</span>
+				<input type="date" placeholder="deadline" ng-model="goal.expiration">
+			</label>
+			<label class="item imte-input item-floating-label">
+				<button ng-show="!goal.img" id="picture-content" class="button button-block button-assertive" ng-click="addImage()" >Add Picture</button>
+				<img ng-show="goal.img" ng-src="{{goal.img}}" style="height:200px; padding: 5px 5px 5px 5px;"/>
+			</label>
+		</div>
 	</ion-content>
 </ion-view>

@@ -8,6 +8,7 @@
     "bootstrap": "~3.3.6",
     "ngstorage": "~0.3.10",
     "Chart.js": "~1.0.2",
-    "angular-chart.js": "~0.8.8"
+    "angular-chart.js": "~0.8.8",
+    "ngCordova": "~0.1.24-alpha"
   }
 }

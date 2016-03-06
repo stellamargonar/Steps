@@ -44,8 +44,8 @@ angular.module('starter.controllers', ['starter.services','ngStorage','chart.js'
 
 })
 
-.controller('GoalCtrl', ['$scope', '$stateParams', '$state', 'Goal', 'Log' ,
-  function($scope, $stateParams, $state, Goal, Log) {
+.controller('GoalCtrl', ['$scope', '$stateParams', '$state', '$ionicPlatform', 'Goal', 'Log' , 'ImageService',
+  function($scope, $stateParams, $state, $ionicPlatform, Goal, Log, ImageService) {
   $scope.goal = {};
   if ($stateParams.goalId) {
     $scope.goal = Goal.get($stateParams.goalId); 
@@ -55,11 +55,18 @@ angular.module('starter.controllers', ['starter.services','ngStorage','chart.js'
     }
   }
   
+  $ionicPlatform.ready(function() {
+    $scope.addImage = function(type) {
+      ImageService.handleMediaDialog(type).then(function(data) {
+        $scope.goal.img = data;
+      });
+    }
+  });
+
   $scope.createGoal = function() {
     Goal.create($scope.goal);
     $state.transitionTo('app.goals', {}, { reload: true, inherit: true, notify: true });
     $scope.goal = {};
-    // $state.go('app.goals', {}, {reload: true});
   };
 
   $scope.editGoal = function() {

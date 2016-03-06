@@ -77,7 +77,8 @@ angular.module('starter.services', ['ngStorage'])
 	factoryInstance.allLogs = function() {
 		var logs = [];
 		Goal.list().forEach(function(goal) {
-			logs = logs.concat(goal.logs);
+			if (goal.logs)
+				logs = logs.concat(goal.logs);
 		});
 		return orderByDate(logs.filter(function(log) {
 			return log;
@@ -183,4 +184,31 @@ angular.module('starter.services', ['ngStorage'])
 		return {labels: labels, data: [data, fixedLine]};
 	};
 	return factoryInstance;
+})
+
+
+.factory('ImageService', function($cordovaCamera, $q) {
+
+	function getOptions() {
+		return {
+			destinationType: Camera.DestinationType.FILE_URI,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			allowEdit: false,
+			encodingType: Camera.EncodingType.JPEG,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+	}
+
+	function saveMedia(type) {
+		return $q(function(resolve, reject) {
+			var options = getOptions(type);
+			$cordovaCamera.getPicture(options).then(function(imageUrl) {
+				resolve(imageUrl);
+			}, function(e) {reject();});
+		})
+	}
+	return {
+		handleMediaDialog: saveMedia
+	}
 });
