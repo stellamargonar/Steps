@@ -1,1 +1,14 @@
 /* Empty. Add your own CSS if you like */
+
+
+.progress-goal{
+	padding-top : 0px !important;
+	padding-bottom: 0px !important;
+}
+.goal-amount {
+    text-align: right;
+    position: absolute;
+    right: 30px;
+    top: 5px;
+    font-size: 18px;
+}

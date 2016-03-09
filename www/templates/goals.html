@@ -4,9 +4,11 @@
     <div class="card" ng-repeat="goal in goals" ng-class="goal.img ? 'card--expand' : ''" >
       <a href="#/app/goals/{{goal.id}}">
       <div class="item item-divider" style="background: url('{{goal.img}}') center / cover;">
-          <h2>{{goal.title}}</span>
+          <h2>{{goal.title}}</h2>
+          <span class="goal-amount">{{goal.amount + '€' }}</span>
+
       </div></a>
-      <div class="item item-text-wrap">
+      <div class="item item-text-wrap progress-goal">
         <div class="row">
           <div class="col col-75" style="padding-top: 17px;">
             <div class="progress">
@@ -17,6 +19,7 @@
             </div>
           </div>
           <div class="col col-25 inline">
+
             <button class="pull-right button button-small button-clear button-dark" ng-click="showLog(goal.id)"><i class="icon ion-plus-round"></i></button>
             <button class="pull-right button button-small button-clear button-dark" ng-click="deleteGoal(goal.id)"><i class="icon ion-trash-b"></i></button>
           </div>
