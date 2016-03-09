@@ -1,5 +1,5 @@
 <ion-view view-title="Goals">
-    <ion-content>
+    <ion-content overflow-scroll="true">
   
     <div class="card" ng-repeat="goal in goals" ng-class="goal.img ? 'card--expand' : ''" >
       <a href="#/app/goals/{{goal.id}}">
