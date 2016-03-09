@@ -191,19 +191,26 @@ angular.module('starter.services', ['ngStorage'])
 
 	function getOptions() {
 		return {
-			destinationType: Camera.DestinationType.FILE_URI,
+			quality: 70,
+        	targetWidth: 400,
+        	targetHeight: 200,
+        	allowEdit: false,
+			destinationType: Camera.DestinationType.FILE_URL,
 			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-			allowEdit: false,
 			encodingType: Camera.EncodingType.JPEG,
 			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
+			saveToPhotoAlbum: false		};
 	}
 
 	function saveMedia(type) {
 		return $q(function(resolve, reject) {
 			var options = getOptions(type);
 			$cordovaCamera.getPicture(options).then(function(imageUrl) {
+				// workaround for problem with "recent" files in android
+				// if (imageUrl.substring(0,21) == "content://com.android") {
+				// 	var photo_split = imageUrl.split("%3A");
+				// 	imageUrl = photo_split[0] + ":" + photo_split[1];
+				// }
 				resolve(imageUrl);
 			}, function(e) {reject();});
 		})

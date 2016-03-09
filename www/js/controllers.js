@@ -5,7 +5,8 @@ angular.module('starter.controllers', ['starter.services','ngStorage','chart.js'
   $scope.init = function () {
     $scope.goals = Goal.list();
   }
-  $scope.init();
+  if (!$scope.goals)
+    $scope.init();
   // LOG pop up
   $scope.showLog = function(goalId) {
     $scope.log = {date: new Date()};

@@ -22,7 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $compileProvider) {
   $stateProvider
 
     .state('app', {
@@ -37,7 +37,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
     views: {
       'menuContent': {
         templateUrl: 'templates/goals.html',
-        controller: 'GoalsCtrl'
+        controller: 'GoalsCtrl',
+        resolve : {
+          goals : function(Goal) {
+            return Goal.list();
+          }
+        }
       }
     }
   })
@@ -79,4 +84,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/goals');
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|file|blob|cdvfile|content):|data:image\//);
 });
